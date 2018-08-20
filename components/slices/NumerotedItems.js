@@ -1,6 +1,6 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
-import { linkResolver } from '../prismic'
+import { linkResolver } from '../../lib/prismic'
 
 function renderItems(slice) {
   return slice.items.map((item, index) =>

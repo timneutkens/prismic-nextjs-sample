@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from '../routes'
 import NotFound from './notfound'
 import Layout from './layout'
-import { Client, Prismic, linkResolver } from '../components/prismic'
+import { Client, Prismic, linkResolver } from '../lib/prismic'
 import { RichText } from 'prismic-reactjs'
 
 export default class extends React.Component {

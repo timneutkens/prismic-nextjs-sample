@@ -1,4 +1,4 @@
-import { Client, PREVIEW_COOKIE, linkResolver } from '../components/prismic'
+import { Client, PREVIEW_COOKIE, linkResolver } from '../lib/prismic'
 import Router from 'next/router'
 import React from 'react'
 import cookie from 'cookie'

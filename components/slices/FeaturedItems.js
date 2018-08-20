@@ -1,7 +1,7 @@
 import React from 'react'
 import PrismicLink from '../PrismicLink'
 import { RichText, Link as LinkHelper } from 'prismic-reactjs'
-import { linkResolver } from '../prismic'
+import { linkResolver } from '../../lib/prismic'
 
 function renderProducts(slice) {
   return slice.items.map((item, index) =>

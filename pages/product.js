@@ -2,7 +2,7 @@ import React from 'react'
 import PrismicLink from '../components/PrismicLink'
 import NotFound from './notfound'
 import Layout from './layout'
-import { Client, linkResolver } from '../components/prismic'
+import { Client, linkResolver } from '../lib/prismic'
 import { RichText } from 'prismic-reactjs'
 
 const graphQuery = `{

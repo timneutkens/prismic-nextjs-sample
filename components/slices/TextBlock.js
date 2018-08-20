@@ -1,6 +1,6 @@
 import React from 'react'
 import { RichText } from 'prismic-reactjs'
-import { linkResolver } from '../prismic'
+import { linkResolver } from '../../lib/prismic'
 
 export default ({ slice }) =>
   <section>
