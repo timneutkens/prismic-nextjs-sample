@@ -1,27 +1,33 @@
-import React from 'react'
-import { Link } from '../routes'
-import NotFound from './notfound'
-import Layout from './layout'
-import { Client, Prismic, linkResolver } from '../lib/prismic'
-import { RichText } from 'prismic-reactjs'
+import React from "react";
+import { Link } from "../routes";
+import NotFound from "./notfound";
+import Layout from "./layout";
+import { Client, Prismic, linkResolver } from "../lib/prismic";
+import { RichText } from "prismic-reactjs";
 
 export default class extends React.Component {
-
   static async getInitialProps({ req, query }) {
     try {
-      const bloghome = await Client(req).getSingle('blog_home');
-      const posts = await Client(req).query(Prismic.Predicates.at('document.type', 'blog_post'), { pageSize: 50 });
-      return { bloghome, posts: posts.results }
-    } catch(error) {
-      return { error: true }
+      const bloghome = await Client(req).getSingle("blog_home");
+      const posts = await Client(req).query(
+        Prismic.Predicates.at("document.type", "blog_post"),
+        { pageSize: 50 }
+      );
+      return { bloghome, posts: posts.results };
+    } catch (error) {
+      return { error: true };
     }
   }
 
   renderPosts() {
-    return this.props.posts.map((document, index) =>
+    return this.props.posts.map((document, index) => (
       <div key={index} className="blog-home-post-wrapper">
         <article>
-          <img className="blog-home-post-image" src={document.data.image.url} alt={document.data.image.alt} />
+          <img
+            className="blog-home-post-image"
+            src={document.data.image.url}
+            alt={document.data.image.alt}
+          />
           <p className="blog-home-post-title">
             {RichText.asText(document.data.title)}
           </p>
@@ -35,29 +41,31 @@ export default class extends React.Component {
           </div>
         </article>
       </div>
-    )
+    ));
   }
 
   renderBody() {
     return (
-      <Layout title={this.props.bloghome.data.meta_title} description={this.props.bloghome.data.meta_description} layout={this.props.layout}>
+      <Layout
+        title={this.props.bloghome.data.meta_title}
+        description={this.props.bloghome.data.meta_description}
+        layout={this.props.layout}
+      >
         <div className="l-wrapper">
           <hr className="separator-hr" />
         </div>
 
         <section className="blog-home-section">
-          <div className="blog-home-posts-wrapper">
-            {this.renderPosts()}
-          </div>
+          <div className="blog-home-posts-wrapper">{this.renderPosts()}</div>
         </section>
 
-        <div data-wio-id={this.props.bloghome.id}></div>
+        <div data-wio-id={this.props.bloghome.id} />
       </Layout>
-    )
+    );
   }
 
   render() {
-    if(this.props.error) return <NotFound />
-    else return this.renderBody()
+    if (this.props.error) return <NotFound />;
+    else return this.renderBody();
   }
 }

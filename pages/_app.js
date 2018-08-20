@@ -1,27 +1,27 @@
-import App, {Container} from 'next/app'
-import React from 'react'
-import { Client } from '../lib/prismic'
-import "../assets/stylesheets/main.scss"
+import App, { Container } from "next/app";
+import React from "react";
+import { Client } from "../lib/prismic";
+import "../assets/stylesheets/main.scss";
 
 export default class extends App {
-  static async getInitialProps ({ Component, ctx, req }) {
-    let pageProps = {}
+  static async getInitialProps({ Component, ctx, req }) {
+    let pageProps = {};
 
     if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
+      pageProps = await Component.getInitialProps(ctx);
     }
 
-    const layout = await Client(req).getSingle('layout')
+    const layout = await Client(req).getSingle("layout");
 
-    return {pageProps, layout}
+    return { pageProps, layout };
   }
 
-  render () {
-    const {Component, pageProps, layout} = this.props
+  render() {
+    const { Component, pageProps, layout } = this.props;
     return (
       <Container>
-        <Component {...Object.assign(pageProps, {layout})} />
+        <Component {...Object.assign(pageProps, { layout })} />
       </Container>
-    )
+    );
   }
 }
